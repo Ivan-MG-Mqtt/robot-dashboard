@@ -1,0 +1,13 @@
+{
+  "name": "robot-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard robot ESP32",
+  "main": "index.js",
+  "scripts": {
+    "start": "node-red"
+  },
+  "dependencies": {
+    "node-red": "^4.0.0",
+    "node-red-dashboard": "^3.6.6"
+  }
+}
