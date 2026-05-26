@@ -1,0 +1,883 @@
+[
+    {
+        "id": "92f5828543a6bb46",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b409dd953adb879f",
+        "type": "mqtt out",
+        "z": "92f5828543a6bb46",
+        "name": "EnviarComando",
+        "topic": "robot/comando",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "92314009635d4d07",
+        "x": 400,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "171a2bb44ae2a015",
+        "type": "inject",
+        "z": "92f5828543a6bb46",
+        "name": "Boton_CAL",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "CAL",
+        "payloadType": "str",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "b409dd953adb879f"
+            ]
+        ]
+    },
+    {
+        "id": "05b118b55ec016a4",
+        "type": "mqtt in",
+        "z": "92f5828543a6bb46",
+        "name": "LogsRobot",
+        "topic": "robot/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "92314009635d4d07",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "86c42fb3cbfd6ba4"
+            ]
+        ]
+    },
+    {
+        "id": "86c42fb3cbfd6ba4",
+        "type": "debug",
+        "z": "92f5828543a6bb46",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "3f88e3a64a916627",
+        "type": "ui_button",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "group": "4de862a16a80d893",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Calibrar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "CAL",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "c47f2b1d219f8cfa"
+            ]
+        ]
+    },
+    {
+        "id": "c47f2b1d219f8cfa",
+        "type": "mqtt out",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "topic": "robot/comando",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "92314009635d4d07",
+        "x": 400,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3aaade99bdc06e01",
+        "type": "mqtt in",
+        "z": "92f5828543a6bb46",
+        "name": "Posición",
+        "topic": "robot/#",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "92314009635d4d07",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 60,
+        "y": 280,
+        "wires": [
+            [
+                "cca0587cf58d5426",
+                "6d80783eee9e9ef7",
+                "e32118705ee64b49"
+            ]
+        ]
+    },
+    {
+        "id": "cca0587cf58d5426",
+        "type": "ui_text",
+        "z": "92f5828543a6bb46",
+        "group": "4de862a16a80d893",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mensajes ",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 340,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "04b3bbbd16a50462",
+        "type": "ui_text",
+        "z": "92f5828543a6bb46",
+        "group": "4de862a16a80d893",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Coordenadas",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 440,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "81e1754838df28fa",
+        "type": "ui_text",
+        "z": "92f5828543a6bb46",
+        "group": "4de862a16a80d893",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Angulos",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 420,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "19efc34cd93b2105",
+        "type": "switch",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "property": "tipo",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "XY",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 230,
+        "y": 400,
+        "wires": [
+            [
+                "81e1754838df28fa"
+            ],
+            [
+                "04b3bbbd16a50462"
+            ]
+        ]
+    },
+    {
+        "id": "c9c57386c8b2bf5b",
+        "type": "ui_text_input",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "label": "Ángulo A",
+        "tooltip": "",
+        "group": "4de862a16a80d893",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 600,
+        "y": 80,
+        "wires": [
+            [
+                "8f199a1bd07ad535"
+            ]
+        ]
+    },
+    {
+        "id": "fa6cd4c52cfdd265",
+        "type": "ui_text_input",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "label": "Ángulo B ",
+        "tooltip": "",
+        "group": "4de862a16a80d893",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 600,
+        "y": 140,
+        "wires": [
+            [
+                "98cb661bdcc50530"
+            ]
+        ]
+    },
+    {
+        "id": "417473daa6c49246",
+        "type": "ui_button",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "group": "4de862a16a80d893",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Mover Ángulos",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "G0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 700,
+        "y": 200,
+        "wires": [
+            [
+                "b519cecdb891d0b4"
+            ]
+        ]
+    },
+    {
+        "id": "b519cecdb891d0b4",
+        "type": "function",
+        "z": "92f5828543a6bb46",
+        "name": "function 1",
+        "func": "let a = flow.get(\"a\") || 0;\nlet b = flow.get(\"b\") || 0;\n\nmsg.payload = \"A,\" + a + \",\" + b;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 200,
+        "wires": [
+            [
+                "172d3baa4b0f1044"
+            ]
+        ]
+    },
+    {
+        "id": "172d3baa4b0f1044",
+        "type": "mqtt out",
+        "z": "92f5828543a6bb46",
+        "name": "EnviarComando",
+        "topic": "robot/comando",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "92314009635d4d07",
+        "x": 920,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "497760a65a9667f3",
+        "type": "ui_text_input",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "label": "X",
+        "tooltip": "",
+        "group": "4de862a16a80d893",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 590,
+        "y": 340,
+        "wires": [
+            [
+                "08454a9c3816f155"
+            ]
+        ]
+    },
+    {
+        "id": "668d93b5cc7e321f",
+        "type": "ui_text_input",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "label": "Y",
+        "tooltip": "",
+        "group": "4de862a16a80d893",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 590,
+        "y": 400,
+        "wires": [
+            [
+                "acd136f77213b9fb"
+            ]
+        ]
+    },
+    {
+        "id": "8872047bbe80c011",
+        "type": "ui_button",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "group": "4de862a16a80d893",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Mover XY",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "G0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 700,
+        "y": 460,
+        "wires": [
+            [
+                "7e81d2395229e79e"
+            ]
+        ]
+    },
+    {
+        "id": "8f199a1bd07ad535",
+        "type": "change",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "a",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "08454a9c3816f155",
+        "type": "change",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "x",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98cb661bdcc50530",
+        "type": "change",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "b",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "acd136f77213b9fb",
+        "type": "change",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "y",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7e81d2395229e79e",
+        "type": "function",
+        "z": "92f5828543a6bb46",
+        "name": "function 2",
+        "func": "let x = flow.get(\"x\") || 0;\nlet y = flow.get(\"y\") || 0;\n\nmsg.payload = \"XY,\" + x + \",\" + y;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 460,
+        "wires": [
+            [
+                "172d3baa4b0f1044"
+            ]
+        ]
+    },
+    {
+        "id": "6d80783eee9e9ef7",
+        "type": "function",
+        "z": "92f5828543a6bb46",
+        "name": "ProcesarPosicion",
+        "func": "let txt = msg.payload;\n\nif (txt.startsWith(\"A,\")) {\n\n    let p = txt.split(\",\");\n\n    msg.tipo = \"A\";\n\n    msg.payload =\n        \"A: \" + p[1] +\n        \"° | B: \" + p[2] + \"°\";\n\n    return msg;\n}\n\nif (txt.startsWith(\"XY,\")) {\n\n    let p = txt.split(\",\");\n\n    msg.tipo = \"XY\";\n\n    msg.payload =\n        \"X: \" + p[1] +\n        \" | Y: \" + p[2];\n\n    return msg;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "19efc34cd93b2105"
+            ]
+        ]
+    },
+    {
+        "id": "39d1e8c1f420b461",
+        "type": "ui_template",
+        "z": "92f5828543a6bb46",
+        "group": "09d9858fd1fb461e",
+        "name": "",
+        "order": 0,
+        "width": "12",
+        "height": "10",
+        "format": "<div style=\"width:100%; height:500px; background:#111; position:relative; overflow:hidden;\">\n\n    <canvas id=\"robotCanvas\" width=\"600\" height=\"500\"></canvas>\n\n</div>\n\n<script>\n    (function(scope){\n\n    const canvas =\n        document.getElementById('robotCanvas');\n\n    const ctx =\n        canvas.getContext('2d');\n\n    let angA = 0;\n    let angB = 0;\n\n    const L1 = 150;\n    const L2 = 100;\n\n    function dibujar(){\n\n        ctx.clearRect(\n            0,\n            0,\n            canvas.width,\n            canvas.height\n        );\n\n        // Fondo\n\n        ctx.fillStyle = \"#111\";\n\n        ctx.fillRect(\n            0,\n            0,\n            canvas.width,\n            canvas.height\n        );\n\n        // Centro\n\n        const cx = 300;\n        const cy = 250;\n\n        // Convertir grados a radianes\n\n        let t1 =\n            angA * Math.PI / 180;\n\n        let t2 =\n            (angA + angB) *\n            Math.PI / 180;\n\n        // Punto brazo 1\n\n        let x1 =\n            cx + L1 * Math.cos(t1);\n\n        let y1 =\n            cy - L1 * Math.sin(t1);\n\n        // Punto final\n\n        let x2 =\n            x1 + L2 * Math.cos(t2);\n\n        let y2 =\n            y1 - L2 * Math.sin(t2);\n\n        // Base\n\n        ctx.beginPath();\n\n        ctx.arc(\n            cx,\n            cy,\n            10,\n            0,\n            Math.PI * 2\n        );\n\n        ctx.fillStyle = \"white\";\n\n        ctx.fill();\n\n        // Brazo 1\n\n        ctx.beginPath();\n\n        ctx.moveTo(cx, cy);\n\n        ctx.lineTo(x1, y1);\n\n        ctx.lineWidth = 10;\n\n        ctx.strokeStyle = \"cyan\";\n\n        ctx.stroke();\n\n        // Brazo 2\n\n        ctx.beginPath();\n\n        ctx.moveTo(x1, y1);\n\n        ctx.lineTo(x2, y2);\n\n        ctx.lineWidth = 10;\n\n        ctx.strokeStyle = \"lime\";\n\n        ctx.stroke();\n\n        // Punta\n\n        ctx.beginPath();\n\n        ctx.arc(\n            x2,\n            y2,\n            8,\n            0,\n            Math.PI * 2\n        );\n\n        ctx.fillStyle = \"red\";\n\n        ctx.fill();\n\n        // Texto\n\n        ctx.fillStyle = \"white\";\n\n        ctx.font = \"18px Arial\";\n\n        ctx.fillText(\n            \"A: \" + angA.toFixed(1),\n            20,\n            30\n        );\n\n        ctx.fillText(\n            \"B: \" + angB.toFixed(1),\n            20,\n            60\n        );\n    }\n\n    scope.$watch(\n        'msg',\n        function(msg){\n\n            if(!msg) return;\n\n            if(\n                msg.payload &&\n                msg.payload.a !== undefined\n            ){\n\n                angA =\n                    parseFloat(\n                        msg.payload.a\n                    );\n\n                angB =\n                    parseFloat(\n                        msg.payload.b\n                    );\n\n                dibujar();\n            }\n        }\n    );\n\n    dibujar();\n\n})(scope);\n\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 200,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e32118705ee64b49",
+        "type": "switch",
+        "z": "92f5828543a6bb46",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "A,",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "XY,",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 210,
+        "y": 500,
+        "wires": [
+            [
+                "996a355ef8952e5b"
+            ],
+            [
+                "43fa8eef652fdc62"
+            ]
+        ]
+    },
+    {
+        "id": "996a355ef8952e5b",
+        "type": "function",
+        "z": "92f5828543a6bb46",
+        "name": "Parse Angulos",
+        "func": "let partes = msg.payload.split(\",\");\n\nmsg.payload = {\n    a: partes[1],\n    b: partes[2]\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "0c94443fd1c709c2",
+                "18fcc2117f2f821f",
+                "6149a273ef53df35",
+                "39d1e8c1f420b461"
+            ]
+        ]
+    },
+    {
+        "id": "43fa8eef652fdc62",
+        "type": "function",
+        "z": "92f5828543a6bb46",
+        "name": "Parse XY",
+        "func": "let partes = msg.payload.split(\",\");\n\nmsg.payload = {\n    x: partes[1],\n    y: partes[2]\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 540,
+        "wires": [
+            [
+                "4af481d9ea3d6932",
+                "787ac11f28b66229",
+                "8ee9b5d4f5b9b1bf"
+            ]
+        ]
+    },
+    {
+        "id": "0c94443fd1c709c2",
+        "type": "ui_text",
+        "z": "92f5828543a6bb46",
+        "group": "09d9858fd1fb461e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Text A",
+        "format": "{{msg.payload.a}} °",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 550,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "18fcc2117f2f821f",
+        "type": "ui_text",
+        "z": "92f5828543a6bb46",
+        "group": "09d9858fd1fb461e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Text B",
+        "format": "{{msg.payload.b}} °",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 550,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "4af481d9ea3d6932",
+        "type": "ui_text",
+        "z": "92f5828543a6bb46",
+        "group": "09d9858fd1fb461e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Text X",
+        "format": "X: {{msg.payload.x}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 550,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "787ac11f28b66229",
+        "type": "ui_text",
+        "z": "92f5828543a6bb46",
+        "group": "09d9858fd1fb461e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Text Y",
+        "format": "Y: {{msg.payload.y}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 550,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "6149a273ef53df35",
+        "type": "debug",
+        "z": "92f5828543a6bb46",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "8ee9b5d4f5b9b1bf",
+        "type": "debug",
+        "z": "92f5828543a6bb46",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "92314009635d4d07",
+        "type": "mqtt-broker",
+        "name": "BrokerLocal",
+        "broker": "d16b6496dd624ab2af4270955bc4326e.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4de862a16a80d893",
+        "type": "ui_group",
+        "name": "Control",
+        "tab": "08e151fe50787749",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "09d9858fd1fb461e",
+        "type": "ui_group",
+        "name": "Posición",
+        "tab": "08e151fe50787749",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "08e151fe50787749",
+        "type": "ui_tab",
+        "name": "Robot",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fdefd73ec4aabcbb",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
